@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BootStrap - Modern Bootstrap Masterclass</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Custom Enhancements & Design Tokens -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* Hero gradient accent */
+        .hero-section {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 60%, #1e40af 100%);
+            position: relative;
+        }
+
+        [data-bs-theme="dark"] .hero-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Feature Card Hover Effects */
+        .feature-card {
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+            border-radius: 1rem;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        /* Carousel Custom Sizing */
+        .carousel-item img {
+            height: 440px;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item img {
+                height: 260px;
+            }
+        }
+
+        .carousel-caption-glass {
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(8px);
+            border-radius: 0.75rem;
+            padding: 1rem 1.5rem;
+        }
+
+        /* Back to top floating button */
+        #backToTopBtn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1050;
+            display: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            transition: opacity 0.3s ease, transform 0.2s ease;
+        }
+
+        #backToTopBtn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body class="bg-body">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg sticky-top bg-body shadow-sm py-3" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-primary fs-4" href="#home">
+                <i class="bi bi-bootstrap-fill fs-2 text-primary"></i> BootStrap
+            </a>
+            
+            <div class="d-flex align-items-center gap-2 order-lg-3 ms-2">
+                <!-- Theme Toggle Button -->
+                <button class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center"
+                    id="themeToggleBtn" aria-label="Toggle dark mode" style="width: 38px; height: 38px;">
+                    <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+                </button>
+
+                <!-- Mobile Navbar Toggler -->
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse order-lg-2" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-3 align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link active fw-medium" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="#stories">Stories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="#faq">FAQs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item mt-2 mt-lg-0 ms-lg-2">
+                        <a class="btn btn-primary rounded-pill px-4" href="#contact">Get Started</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-light py-5 py-lg-6" id="home">
+        <div class="container py-4">
+            <div class="row align-items-center gy-5">
+                <div class="col-12 col-lg-6 text-center text-lg-start">
+                    <span class="badge bg-white text-primary px-3 py-2 rounded-pill fw-semibold mb-3 shadow-sm">
+                        <i class="bi bi-stars me-1 text-warning"></i> Next-Gen Web Development
+                    </span>
+                    <h1 class="display-4 fw-extrabold lh-tight mb-3">
+                        Master Responsive UI Design with Bootstrap
+                    </h1>
+                    <p class="lead text-light text-opacity-75 mb-4">
+                        Build responsive, accessible, mobile-first websites faster with clean code, modern best practices, and robust reusable components.
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
+                        <a href="#services" class="btn btn-light btn-lg px-4 rounded-pill fw-semibold shadow text-primary">
+                            <i class="bi bi-rocket-takeoff me-2"></i>Explore Tracks
+                        </a>
+                        <a href="#faq" class="btn btn-outline-light btn-lg px-4 rounded-pill fw-semibold">
+                            Learn More
+                        </a>
+                    </div>
+
+                    <!-- Counter Statistics -->
+                    <div class="row text-center mt-5 pt-3 border-top border-light border-opacity-25 g-3">
+                        <div class="col-4">
+                            <h3 class="fw-bold text-white mb-0 counter" data-target="25000">0</h3>
+                            <p class="text-light text-opacity-75 small mb-0">Active Students</p>
+                        </div>
+                        <div class="col-4">
+                            <h3 class="fw-bold text-white mb-0 counter" data-target="98">0</h3>
+                            <p class="text-light text-opacity-75 small mb-0">% Satisfaction</p>
+                        </div>
+                        <div class="col-4">
+                            <h3 class="fw-bold text-white mb-0 counter" data-target="150">0</h3>
+                            <p class="text-light text-opacity-75 small mb-0">UI Components</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="position-relative mx-auto text-center">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80" 
+                             alt="Coding workspace" 
+                             class="img-fluid rounded-4 shadow-lg w-100"
+                             style="max-height: 420px; object-fit: cover;"
+                             onerror="this.src='https://placehold.co/600x400/2563eb/ffffff?text=Modern+Coding+Workspace'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services & Features Section -->
+    <section class="container py-5 my-3" id="services">
+        <div class="text-center max-w-lg mx-auto mb-5">
+            <span class="text-primary text-uppercase fw-bold tracking-wide small">Our Curriculums</span>
+            <h2 class="display-6 fw-bold mt-1">What You'll Learn</h2>
+            <p class="text-secondary">Designed for modern developers seeking real-world front-end competency.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <!-- Card 1 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card feature-card h-100 border-0 shadow-sm bg-body-tertiary p-3">
+                    <div class="position-relative overflow-hidden rounded-3 mb-3">
+                        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=700&q=80" 
+                             class="card-img-top w-100" 
+                             alt="UI Design" 
+                             style="height: 190px; object-fit: cover;"
+                             onerror="this.src='https://placehold.co/600x400/3b82f6/ffffff?text=UI+UX+Design'">
+                        <span class="badge bg-primary position-absolute top-0 end-0 m-3 shadow-sm">Popular</span>
+                    </div>
+                    <div class="card-body p-2 d-flex flex-column">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <i class="bi bi-palette text-primary fs-5"></i>
+                            <h5 class="card-title fw-bold mb-0">UI/UX Design</h5>
+                        </div>
+                        <p class="card-text text-secondary small flex-grow-1">
+                            Master layout principles, typography scales, spacing grids, and responsive prototyping with Figma & Bootstrap utilities.
+                        </p>
+                        <a href="#contact" class="btn btn-outline-primary btn-sm rounded-pill mt-3 w-100">Enroll Course</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card feature-card h-100 border-0 shadow-sm bg-body-tertiary p-3">
+                    <div class="position-relative overflow-hidden rounded-3 mb-3">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=700&q=80" 
+                             class="card-img-top w-100" 
+                             alt="Responsive Development" 
+                             style="height: 190px; object-fit: cover;"
+                             onerror="this.src='https://placehold.co/600x400/10b981/ffffff?text=Web+Development'">
+                        <span class="badge bg-success position-absolute top-0 end-0 m-3 shadow-sm">Hands-on</span>
+                    </div>
+                    <div class="card-body p-2 d-flex flex-column">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <i class="bi bi-code-slash text-success fs-5"></i>
+                            <h5 class="card-title fw-bold mb-0">Fluid Grid Architecture</h5>
+                        </div>
+                        <p class="card-text text-secondary small flex-grow-1">
+                            Construct seamless flexbox containers, adaptive breakpoints, dynamic offcanvas menus, and custom utility states.
+                        </p>
+                        <a href="#contact" class="btn btn-outline-success btn-sm rounded-pill mt-3 w-100">Enroll Course</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card feature-card h-100 border-0 shadow-sm bg-body-tertiary p-3">
+                    <div class="position-relative overflow-hidden rounded-3 mb-3">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80" 
+                             class="card-img-top w-100" 
+                             alt="Interactive JavaScript" 
+                             style="height: 190px; object-fit: cover;"
+                             onerror="this.src='https://placehold.co/600x400/8b5cf6/ffffff?text=Data+Analytics'">
+                        <span class="badge bg-info position-absolute top-0 end-0 m-3 shadow-sm text-dark">Interactive</span>
+                    </div>
+                    <div class="card-body p-2 d-flex flex-column">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <i class="bi bi-lightning-charge text-info fs-5"></i>
+                            <h5 class="card-title fw-bold mb-0">Dynamic Interactions</h5>
+                        </div>
+                        <p class="card-text text-secondary small flex-grow-1">
+                            Integrate event listeners, DOM state manipulation, modals, toasts, and reactive form elements for full polish.
+                        </p>
+                        <a href="#contact" class="btn btn-outline-info btn-sm rounded-pill mt-3 w-100">Enroll Course</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stories Carousel Section -->
+    <section class="py-5 bg-body-tertiary" id="stories">
+        <div class="container">
+            <div class="text-center mb-4">
+                <span class="text-primary text-uppercase fw-bold tracking-wide small">Testimonials & Success</span>
+                <h2 class="display-6 fw-bold mt-1">Student Success Stories</h2>
+                <p class="text-secondary">Discover how developers changed careers after mastering modern frontend architectures.</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10">
+                    <div id="storiesCarousel" class="carousel slide shadow rounded-4 overflow-hidden" data-bs-ride="carousel">
+                        <!-- Indicators -->
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#storiesCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#storiesCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#storiesCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+
+                        <!-- Slides -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="4000">
+                                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" 
+                                     class="d-block w-100" 
+                                     alt="Team meeting"
+                                     onerror="this.src='https://placehold.co/1200x500/1e293b/ffffff?text=Modern+Team+Collaboration'">
+                                <div class="carousel-caption carousel-caption-glass text-start mb-4 mx-2">
+                                    <h5 class="fw-bold text-white mb-1"><i class="bi bi-quote fs-4 text-warning"></i> Landed a Frontend Engineer role in 3 months!</h5>
+                                    <p class="small text-light mb-0">"The responsive grid models and clean reusable components accelerated my career shift." &mdash; <strong>Elena Vance</strong></p>
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80" 
+                                     class="d-block w-100" 
+                                     alt="Creative Coding"
+                                     onerror="this.src='https://placehold.co/1200x500/1e293b/ffffff?text=Design+and+Tech'">
+                                <div class="carousel-caption carousel-caption-glass text-start mb-4 mx-2">
+                                    <h5 class="fw-bold text-white mb-1"><i class="bi bi-quote fs-4 text-warning"></i> From Graphic Designer to Full UI Engineer</h5>
+                                    <p class="small text-light mb-0">"Bootstrap's flexibility combined with vanilla JS made web development genuinely intuitive." &mdash; <strong>Marcus Rivera</strong></p>
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80" 
+                                     class="d-block w-100" 
+                                     alt="Team collaboration"
+                                     onerror="this.src='https://placehold.co/1200x500/1e293b/ffffff?text=Team+Success'">
+                                <div class="carousel-caption carousel-caption-glass text-start mb-4 mx-2">
+                                    <h5 class="fw-bold text-white mb-1"><i class="bi bi-quote fs-4 text-warning"></i> Shipped our MVP in Record Time</h5>
+                                    <p class="small text-light mb-0">"We rebuilt our entire production portal cleanly without thousands of custom CSS lines." &mdash; <strong>Sarah Chen</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Controls -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#storiesCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#storiesCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section with Real-Time Filter -->
+    <section class="container py-5 my-3" id="faq">
+        <div class="text-center max-w-lg mx-auto mb-4">
+            <span class="text-primary text-uppercase fw-bold tracking-wide small">Have Questions?</span>
+            <h2 class="display-6 fw-bold mt-1">Frequently Asked Questions</h2>
+            <p class="text-secondary">Find instant answers to common questions about Bootstrap, CSS, and interactive design.</p>
+        </div>
+
+        <!-- Live Search Box -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="input-group shadow-sm">
+                    <span class="input-group-text bg-body-tertiary border-end-0">
+                        <i class="bi bi-search text-secondary"></i>
+                    </span>
+                    <input type="text" id="faqSearchInput" class="form-control border-start-0 ps-0" placeholder="Type keywords to filter FAQs...">
+                </div>
+            </div>
+        </div>
+
+        <!-- Accordion Container -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="accordion shadow-sm rounded-3 overflow-hidden" id="faqAccordion">
+                    <!-- Item 1 -->
+                    <div class="accordion-item faq-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="bi bi-question-circle me-2 text-primary"></i> What prerequisites do I need to learn Bootstrap?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-secondary">
+                                A foundational understanding of HTML markup and basic CSS syntax (selectors, properties, box model) is recommended. Prior JavaScript knowledge is helpful for triggering advanced components like Modals, Tooltips, and Toasts.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="accordion-item faq-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <i class="bi bi-lightning me-2 text-primary"></i> Is Bootstrap 5 mobile-first and fully responsive?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-secondary">
+                                Yes! Bootstrap 5 is built mobile-first using a 12-column responsive flexbox grid system with responsive prefixes (<code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>, <code>xxl</code>) to adjust elements across screen widths seamlessly.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="accordion-item faq-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <i class="bi bi-moon-stars me-2 text-primary"></i> How does Bootstrap 5 handle Dark Mode?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-secondary">
+                                Bootstrap 5.3+ features native color modes driven by the <code>data-bs-theme="dark"</code> HTML attribute, dynamically adjusting CSS variables for backgrounds, borders, cards, text, and inputs across the entire DOM tree.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="accordion-item faq-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <i class="bi bi-award me-2 text-primary"></i> Do I need jQuery to run Bootstrap 5 components?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-secondary">
+                                No, Bootstrap 5 completely removed jQuery dependencies in favor of lightweight, vanilla JavaScript and native browser APIs.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="faqNoMatch" class="alert alert-warning text-center mt-3 d-none">
+                    <i class="bi bi-exclamation-triangle me-1"></i> No matching questions found. Try searching another term!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="container py-5 my-3" id="contact">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="card border-0 shadow-sm p-4 p-md-5 rounded-4 bg-body-tertiary">
+                    <div class="text-center mb-4">
+                        <span class="text-primary text-uppercase fw-bold tracking-wide small">Get In Touch</span>
+                        <h2 class="display-6 fw-bold mt-1">Send Us a Message</h2>
+                        <p class="text-secondary">Have a question or looking to build something exceptional? Let's talk.</p>
+                    </div>
+
+                    <!-- Bootstrap Validated Form -->
+                    <form id="contactForm" class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label for="contactName" class="form-label fw-semibold">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    <input type="text" class="form-control" id="contactName" placeholder="John Doe" required minlength="2">
+                                    <div class="invalid-feedback">Please enter your name (at least 2 characters).</div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label for="contactEmail" class="form-label fw-semibold">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                    <input type="email" class="form-control" id="contactEmail" placeholder="you@example.com" required>
+                                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="contactSubject" class="form-label fw-semibold">Subject</label>
+                                <select class="form-select" id="contactSubject" required>
+                                    <option value="" disabled selected>Select an inquiry topic...</option>
+                                    <option value="courses">Course Curriculum & Details</option>
+                                    <option value="mentorship">1-on-1 Mentorship</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="other">Other Inquiry</option>
+                                </select>
+                                <div class="invalid-feedback">Please select a subject.</div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="contactMessage" class="form-label fw-semibold">Message</label>
+                                <textarea class="form-control" id="contactMessage" rows="5" placeholder="How can we help you today?" required minlength="10"></textarea>
+                                <div class="invalid-feedback">Please provide your message (min 10 characters).</div>
+                            </div>
+
+                            <div class="col-12 mt-4 text-center text-md-start">
+                                <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow-sm" id="submitBtn">
+                                    <span class="normal-state d-inline-flex align-items-center gap-2">
+                                        <i class="bi bi-send-fill"></i> Send Message
+                                    </span>
+                                    <span class="loading-state d-none align-items-center gap-2">
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        Sending...
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-body border-top py-5 mt-5">
+        <div class="container">
+            <div class="row gy-4 align-items-center justify-content-between">
+                <div class="col-12 col-md-6 text-center text-md-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mb-2">
+                        <i class="bi bi-bootstrap-fill text-primary fs-3"></i>
+                        <span class="fw-bold fs-5">BootStrap</span>
+                    </div>
+                    <p class="text-secondary small mb-0">Crafting intuitive, accessible, and high-performance modern web experiences.</p>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3 fs-5">
+                        <a href="https://github.com" target="_blank" rel="noreferrer" class="text-secondary hover-primary" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                        <a href="https://twitter.com" target="_blank" rel="noreferrer" class="text-secondary hover-primary" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="https://linkedin.com" target="_blank" rel="noreferrer" class="text-secondary hover-primary" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://discord.com" target="_blank" rel="noreferrer" class="text-secondary hover-primary" aria-label="Discord"><i class="bi bi-discord"></i></a>
+                    </div>
+                    <p class="text-secondary text-center text-md-end small mt-2 mb-0">&copy; 2026 BootStrap. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button type="button" class="btn btn-primary shadow-lg" id="backToTopBtn" aria-label="Scroll back to top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Interactive Bootstrap Toast Notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+        <div id="liveToast" class="toast align-items-center text-bg-success border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body d-flex align-items-center gap-2">
+                    <i class="bi bi-check-circle-fill fs-5"></i>
+                    <div>
+                        <strong class="d-block">Message Sent Successfully!</strong>
+                        <span id="toastMessageText" class="small">Thank you for reaching out. We will respond shortly.</span>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3.3 Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- Custom Interactive Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ----------------------------------------------------
+            // 1. Dark/Light Mode Theme Toggle with Persistence
+            // ----------------------------------------------------
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const themeIcon = document.getElementById('themeIcon');
+            const htmlElement = document.documentElement;
+
+            // Load saved theme from localStorage or system preference
+            const savedTheme = localStorage.getItem('siteTheme') || 
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+            function applyTheme(theme) {
+                htmlElement.setAttribute('data-bs-theme', theme);
+                localStorage.setItem('siteTheme', theme);
+                if (theme === 'dark') {
+                    themeIcon.className = 'bi bi-sun-fill text-warning';
+                } else {
+                    themeIcon.className = 'bi bi-moon-stars-fill text-dark';
+                }
+            }
+
+            applyTheme(savedTheme);
+
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-bs-theme');
+                const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                applyTheme(nextTheme);
+            });
+
+            // ----------------------------------------------------
+            // 2. Animated Counter for Hero Statistics
+            // ----------------------------------------------------
+            const counters = document.querySelectorAll('.counter');
+            let hasAnimatedCounters = false;
+
+            function animateCounters() {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    const increment = target / 50;
+
+                    const updateCount = () => {
+                        count += increment;
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count).toLocaleString();
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            counter.innerText = target.toLocaleString() + (target >= 1000 ? '+' : '');
+                        }
+                    };
+                    updateCount();
+                });
+            }
+
+            // Trigger when hero comes into view
+            const heroSection = document.getElementById('home');
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !hasAnimatedCounters) {
+                    hasAnimatedCounters = true;
+                    animateCounters();
+                }
+            }, { threshold: 0.3 });
+            if (heroSection) observer.observe(heroSection);
+
+            // ----------------------------------------------------
+            // 3. Real-Time FAQ Live Search Filtering
+            // ----------------------------------------------------
+            const faqSearchInput = document.getElementById('faqSearchInput');
+            const faqItems = document.querySelectorAll('.faq-item');
+            const faqNoMatch = document.getElementById('faqNoMatch');
+
+            faqSearchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                let matchedCount = 0;
+
+                faqItems.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(query)) {
+                        item.classList.remove('d-none');
+                        matchedCount++;
+                    } else {
+                        item.classList.add('d-none');
+                    }
+                });
+
+                if (matchedCount === 0) {
+                    faqNoMatch.classList.remove('d-none');
+                } else {
+                    faqNoMatch.classList.add('d-none');
+                }
+            });
+
+            // ----------------------------------------------------
+            // 4. Contact Form Validation & Submission Handler
+            // ----------------------------------------------------
+            const contactForm = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const normalState = submitBtn.querySelector('.normal-state');
+            const loadingState = submitBtn.querySelector('.loading-state');
+            const liveToastEl = document.getElementById('liveToast');
+            const toastMessageText = document.getElementById('toastMessageText');
+            const toastInstance = new bootstrap.Toast(liveToastEl, { delay: 4000 });
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                if (!contactForm.checkValidity()) {
+                    contactForm.classList.add('was-validated');
+                    return;
+                }
+
+                // Collect values safely
+                const name = document.getElementById('contactName').value.trim();
+
+                // Show loading state
+                submitBtn.disabled = true;
+                normalState.classList.add('d-none');
+                loadingState.classList.remove('d-none');
+
+                // Simulate network request
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    normalState.classList.remove('d-none');
+                    loadingState.classList.add('d-none');
+
+                    // Reset form and validation styles
+                    contactForm.reset();
+                    contactForm.classList.remove('was-validated');
+
+                    // Trigger toast notification
+                    toastMessageText.textContent = `Thanks ${name}! We have received your message and will follow up shortly.`;
+                    toastInstance.show();
+                }, 1000);
+            });
+
+            // ----------------------------------------------------
+            // 5. Back-to-Top Floating Button & Smooth Scrolling
+            // ----------------------------------------------------
+            const backToTopBtn = document.getElementById('backToTopBtn');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.style.display = 'block';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Close mobile navbar after clicking nav links on small screens
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)');
+            const navbarCollapse = document.getElementById('navbarSupportedContent');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 992 && navbarCollapse.classList.contains('show')) {
+                        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                        if (bsCollapse) bsCollapse.hide();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
